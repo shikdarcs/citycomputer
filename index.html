@@ -6,69 +6,81 @@
 <meta name="description" content="City Computer, Mirpur-13 Dhaka">
 <title>City Computer — Connect</title>
 <style>
-:root{--blue:#007aff;--green:#34c759;--card:rgba(255,255,255,.74);--text:#1c1c1e;--muted:#6e6e73;--line:rgba(60,60,67,.14);--chipbg:rgba(120,160,230,.12);--bgfrom:#9cc8ff;--bgmid:#cfe4ff;--bgto:#f2f7ff}
-@media(prefers-color-scheme:dark){:root{--card:rgba(28,34,50,.72);--text:#f2f2f7;--muted:#9a9aa5;--line:rgba(235,235,245,.14);--chipbg:rgba(255,255,255,.07);--bgfrom:#0b2a5c;--bgmid:#0a1a38;--bgto:#060d1c}}
+:root{--blue:#007aff;--card:rgba(255,255,255,.74);--text:#1c1c1e;--muted:#6e6e73;--line:rgba(60,60,67,.14);--bgfrom:#9cc8ff;--bgmid:#cfe4ff;--bgto:#f2f7ff}
+@media(prefers-color-scheme:dark){:root{--card:rgba(28,34,50,.72);--text:#f2f2f7;--muted:#9a9aa5;--line:rgba(235,235,245,.14);--bgfrom:#0b2a5c;--bgmid:#0a1a38;--bgto:#060d1c}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{background:var(--bgto)}
 body{margin:0;min-height:100vh;font:15px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:radial-gradient(70% 40% at 15% 0%,#5aa9ff66,transparent 70%),radial-gradient(60% 35% at 95% 30%,#7aa8ff55,transparent 70%),linear-gradient(180deg,var(--bgfrom),var(--bgmid) 45%,var(--bgto));background-attachment:fixed;padding-bottom:env(safe-area-inset-bottom)}
 .app{max-width:440px;margin:0 auto;min-height:100vh}
 .hero{background:linear-gradient(160deg,#0a84ff,#0050d8 70%,#003bb0);color:#fff;text-align:center;padding:calc(22px + env(safe-area-inset-top)) 20px 66px;border-radius:0 0 34px 34px;box-shadow:0 14px 34px #0050d840}
-.logo{display:block;width:100%;max-width:230px;height:104px;object-fit:contain;margin:0 auto 10px}
+.frame{width:min(100%,264px);margin:0 auto 14px;padding:6px;border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.6),rgba(255,255,255,.16));border:1px solid rgba(255,255,255,.65);box-shadow:0 16px 34px #00205f55,inset 0 1px 0 #fffa;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.frame-in{background:#fff;border-radius:22px;padding:8px 10px;box-shadow:inset 0 0 0 1px #0a3a8a14}
+.logo{display:block;width:100%;height:96px;object-fit:contain}
 h1{margin:0;font-size:27px;font-weight:700;letter-spacing:-.6px}
 .tag{margin:4px 0 12px;color:#d6e6ff;font-size:13px}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:#ffffff26;border:1px solid #ffffff33;font-size:12px;color:#fff;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .chip svg{width:14px;height:14px}
 main{padding:0 16px 28px;margin-top:-38px}
-.primary{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:9px;height:58px;border-radius:20px;color:#fff;text-decoration:none;font-weight:600;font-size:16px;border:1px solid rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(190%);backdrop-filter:blur(18px) saturate(190%);text-shadow:0 1px 2px #00000026;transition:transform .12s}
-.btn::before{content:"";position:absolute;inset:0 0 50% 0;background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,0));pointer-events:none}
-.btn svg{filter:drop-shadow(0 1px 1px #00000030)}
-.btn:active,.row:active,.sum:active{transform:scale(.97)}
-.btn.wa{background:linear-gradient(160deg,rgba(60,215,100,.82),rgba(30,160,70,.7));box-shadow:0 10px 26px #34c75955,inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.08)}
-.btn.call{background:linear-gradient(160deg,rgba(60,150,255,.82),rgba(0,95,225,.72));box-shadow:0 10px 26px #007aff55,inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.1)}
 svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.group{margin-top:14px;background:var(--card);border:1px solid rgba(255,255,255,.55);border-radius:22px;overflow:hidden;-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);box-shadow:0 12px 32px #0a3a8a1f}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+.gl{position:relative;overflow:hidden;color:#fff;text-decoration:none;text-shadow:0 1px 2px #00000026;border:1px solid rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(190%);backdrop-filter:blur(18px) saturate(190%);background:linear-gradient(160deg,var(--g1),var(--g2));box-shadow:0 10px 24px var(--sh),inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.1);transition:transform .12s}
+.gl::before{content:"";position:absolute;inset:0 0 50% 0;background:linear-gradient(180deg,rgba(255,255,255,.36),rgba(255,255,255,0));pointer-events:none}
+.gl>*{position:relative}.gl svg{filter:drop-shadow(0 1px 1px #00000030)}
+.gl:active{transform:scale(.96)}
+.c-blue{--g1:rgba(60,150,255,.86);--g2:rgba(0,100,230,.76);--sh:#007aff55}
+.c-green{--g1:rgba(60,215,100,.86);--g2:rgba(30,160,70,.74);--sh:#34c75955}
+.c-red{--g1:rgba(255,105,95,.88);--g2:rgba(235,50,40,.76);--sh:#ff3b3055}
+.c-indigo{--g1:rgba(125,122,255,.88);--g2:rgba(80,78,210,.76);--sh:#5856d655}
+.c-orange{--g1:rgba(255,179,64,.9);--g2:rgba(240,135,0,.78);--sh:#ff950055}
+.c-teal{--g1:rgba(76,196,220,.88);--g2:rgba(30,160,185,.76);--sh:#30b0c755}
+.c-purple{--g1:rgba(198,105,232,.88);--g2:rgba(160,70,210,.76);--sh:#af52de55}
+.c-pink{--g1:rgba(255,107,142,.88);--g2:rgba(235,40,85,.76);--sh:#ff2d5555}
+.primary{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;height:58px;border-radius:20px;font-weight:600;font-size:16px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.mini{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:80px;border-radius:20px;font-weight:600;font-size:13px}
+.group{margin-top:16px;background:var(--card);border:1px solid rgba(255,255,255,.55);border-radius:22px;overflow:hidden;-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);box-shadow:0 12px 32px #0a3a8a1f}
 @media(prefers-color-scheme:dark){.group{border-color:rgba(255,255,255,.08)}}
-.row{display:flex;align-items:center;gap:13px;padding:13px 14px;color:inherit;text-decoration:none;transition:transform .12s,background .12s}
-.row+.row{border-top:1px solid var(--line)}
-.row:hover{background:#007aff0d}
-.ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;color:#fff}
-.ic.m{background:linear-gradient(180deg,#ff5e55,#ff3b30)}.ic.w{background:linear-gradient(180deg,#6e6cf0,#5856d6)}.ic.l{background:linear-gradient(180deg,#ffab33,#ff9500)}.ic.s{background:linear-gradient(180deg,#4cc4dc,#30b0c7)}
-.txt{min-width:0;flex:1}.txt b{display:block;font-size:15px;font-weight:600}.txt span{display:block;color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.go{width:16px;height:16px;color:#aeaeb2}
-details{border-top:1px solid var(--line)}
-.sum{list-style:none;display:flex;align-items:center;gap:13px;padding:13px 14px;cursor:pointer;transition:transform .12s}
-.sum::-webkit-details-marker{display:none}
-.sum .go{transition:transform .2s}
-details[open] .sum .go{transform:rotate(90deg)}
-.tags{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 16px}
-.tags span{padding:8px 12px;border-radius:12px;background:var(--chipbg);border:1px solid var(--line);font-size:12.5px}
+.gh{padding:15px 16px 2px}.gh b{display:block;font-size:17px;font-weight:700;letter-spacing:-.2px}.gh span{display:block;margin-top:2px;color:var(--muted);font-size:12.5px}
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:12px 14px 16px}
+.tile{display:grid;place-items:center;aspect-ratio:1;border-radius:18px}
+.tile svg{width:25px;height:25px}
 .foot{margin-top:18px;text-align:center;color:var(--muted);font-size:12px}
-:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+:focus-visible{outline:2px solid #fff;outline-offset:2px;box-shadow:0 0 0 4px var(--blue)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head><body>
+<svg class="sprite" aria-hidden="true"><symbol id="i-school" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></symbol><symbol id="i-job" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></symbol><symbol id="i-nid" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 16c.5-2 5.5-2 6 0M15 10h3M15 14h3"/></symbol><symbol id="i-birth" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="m9 14 2 2 4-4"/></symbol><symbol id="i-unlock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.5-2"/></symbol><symbol id="i-virus" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-soft" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></symbol><symbol id="i-fix" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol><symbol id="i-print" viewBox="0 0 24 24"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7"/></symbol><symbol id="i-web" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="i-wa" viewBox="0 0 24 24"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5Z"/><path d="M8.5 8.2c.3-.6.6-.6 1-.6h.4l1.1 2-.6.7c.7 1.2 1.3 1.7 2.4 2.3l.7-.7 1.8.8"/></symbol><symbol id="i-call" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.8a15 15 0 0 0 5.7 5.7L16 13l5 2v4c0 1.1-.9 2-2 2C10 21 3 14 3 5c0-1.1.9-2 2-2Z"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol></svg>
 <div class="app">
 <header class="hero">
-<img class="logo" src="city-computer-logo.webp" alt="City Computer logo">
+<div class="frame"><div class="frame-in"><img class="logo" src="city-computer-logo.webp" alt="City Computer logo"></div></div>
 <h1>City Computer</h1>
 <p class="tag">Computer &amp; Digital Services</p>
 <div class="chip"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>Mirpur-13, Dhaka</div>
 </header>
 <main>
 <div class="primary">
-<a class="btn wa" href="https://wa.me/8801980096447" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5Z"/><path d="M8.5 8.2c.3-.6.6-.6 1-.6h.4l1.1 2-.6.7c.7 1.2 1.3 1.7 2.4 2.3l.7-.7 1.8.8"/></svg>WhatsApp</a>
-<a class="btn call" href="tel:+8801980096447"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.8a15 15 0 0 0 5.7 5.7L16 13l5 2v4c0 1.1-.9 2-2 2C10 21 3 14 3 5c0-1.1.9-2 2-2Z"/></svg>Call now</a>
+<a class="btn gl c-green" href="https://wa.me/8801980096447" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+<a class="btn gl c-blue" href="tel:+8801980096447"><svg viewBox="0 0 24 24"><use href="#i-call"/></svg><span>Call now</span></a>
 </div>
-
-<nav class="group" aria-label="Contact options">
-<a class="row" href="mailto:citycomputer360@gmail.com"><span class="ic m"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><span class="txt"><b>Email</b><span>citycomputer360@gmail.com</span></span><svg class="go" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></a>
-<a class="row" href="https://citycomputer.bd.com" target="_blank" rel="noopener"><span class="ic w"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18"/></svg></span><span class="txt"><b>Website</b><span>citycomputer.bd.com</span></span><svg class="go" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></a>
-<a class="row" href="https://www.google.com/maps/search/?api=1&query=City+Computer+Mirpur-13+Dhaka" target="_blank" rel="noopener"><span class="ic l"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="txt"><b>Location</b><span>Mirpur-13, Dhaka — open in Maps</span></span><svg class="go" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></a>
-<details>
-<summary class="sum"><span class="ic s"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8M8 13h8M8 17h5"/></svg></span><span class="txt"><b>Our services</b><span>What we can help you with</span></span><svg class="go" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></summary>
-<div class="tags"><span>Computer &amp; laptop troubleshooting</span><span>Windows &amp; software installation</span><span>Virus &amp; malware removal</span><span>Printing &amp; scanning</span><span>Online applications</span><span>Website &amp; digital services</span></div>
-</details>
-</nav>
+<div class="row3">
+<a class="mini gl c-red" href="mailto:citycomputer360@gmail.com"><svg viewBox="0 0 24 24"><use href="#i-mail"/></svg><span>Email</span></a>
+<a class="mini gl c-indigo" href="https://citycomputer.bd.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#i-web"/></svg><span>Website</span></a>
+<a class="mini gl c-orange" href="https://www.google.com/maps/search/?api=1&query=City+Computer+Mirpur-13+Dhaka" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg><span>Location</span></a>
+</div>
+<section class="group" aria-label="Our services"><div class="gh"><b>Our services</b><span>Tap an icon to open the service</span></div>
+<!-- To add a service: copy one tile line, change the icon, color class, href, title and aria-label -->
+<div class="tiles">
+<a class="tile gl c-blue" href="https://gsa.teletalk.com.bd" target="_blank" rel="noopener" title="School admission &amp; fee" aria-label="School admission &amp; fee"><svg viewBox="0 0 24 24"><use href="#i-school"/></svg></a>
+<a class="tile gl c-indigo" href="https://www.bdjobs.com" target="_blank" rel="noopener" title="Job applications" aria-label="Job applications"><svg viewBox="0 0 24 24"><use href="#i-job"/></svg></a>
+<a class="tile gl c-teal" href="https://services.nidw.gov.bd" target="_blank" rel="noopener" title="NID services" aria-label="NID services"><svg viewBox="0 0 24 24"><use href="#i-nid"/></svg></a>
+<a class="tile gl c-green" href="https://bdris.gov.bd" target="_blank" rel="noopener" title="Birth registration" aria-label="Birth registration"><svg viewBox="0 0 24 24"><use href="#i-birth"/></svg></a>
+<a class="tile gl c-pink" href="https://wa.me/8801980096447?text=Hello%20City%20Computer%2C%20I%20need%20help%20with%3A%20PC%20unlock" target="_blank" rel="noopener" title="PC unlock" aria-label="PC unlock"><svg viewBox="0 0 24 24"><use href="#i-unlock"/></svg></a>
+<a class="tile gl c-red" href="https://wa.me/8801980096447?text=Hello%20City%20Computer%2C%20I%20need%20help%20with%3A%20Virus%20removal" target="_blank" rel="noopener" title="Virus removal" aria-label="Virus removal"><svg viewBox="0 0 24 24"><use href="#i-virus"/></svg></a>
+<a class="tile gl c-purple" href="https://wa.me/8801980096447?text=Hello%20City%20Computer%2C%20I%20need%20help%20with%3A%20Software%20setup" target="_blank" rel="noopener" title="Software setup" aria-label="Software setup"><svg viewBox="0 0 24 24"><use href="#i-soft"/></svg></a>
+<a class="tile gl c-orange" href="https://wa.me/8801980096447?text=Hello%20City%20Computer%2C%20I%20need%20help%20with%3A%20Computer%20repair" target="_blank" rel="noopener" title="Computer repair" aria-label="Computer repair"><svg viewBox="0 0 24 24"><use href="#i-fix"/></svg></a>
+<a class="tile gl c-blue" href="https://wa.me/8801980096447?text=Hello%20City%20Computer%2C%20I%20need%20help%20with%3A%20Printing%20%26%20scanning" target="_blank" rel="noopener" title="Printing &amp; scanning" aria-label="Printing &amp; scanning"><svg viewBox="0 0 24 24"><use href="#i-print"/></svg></a>
+<a class="tile gl c-teal" href="https://wa.me/8801980096447?text=Hello%20City%20Computer%2C%20I%20have%20a%20question%20about%20your%20services" target="_blank" rel="noopener" title="More services" aria-label="More services"><svg viewBox="0 0 24 24"><use href="#i-plus"/></svg></a>
+</div></section>
 <p class="foot">Tap any option to connect directly</p>
 </main>
 </div>
